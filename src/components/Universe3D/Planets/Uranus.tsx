@@ -1,11 +1,12 @@
 import { useTexture } from "@react-three/drei";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import UranusImg from "../../assets/uranus.jpg";
+import UranusImg from "../../../assets/uranus.jpg";
+import * as THREE from "three";
 
 const Uranus = () => {
   const UranusTexture = useTexture(UranusImg);
-  const UranusRef = useRef();
+  const UranusRef = useRef<THREE.Mesh>(null);
 
   useFrame(() => {
     if (UranusRef.current) {

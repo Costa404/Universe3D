@@ -1,5 +1,5 @@
 import { useTexture } from "@react-three/drei";
-import AlienStarImg from "../../assets/AlienSun.jpg";
+import AlienStarImg from "../../../assets/AlienSun.jpg";
 
 const AlienStar = () => {
   const AlienStarTexture = useTexture(AlienStarImg);

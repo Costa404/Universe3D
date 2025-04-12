@@ -1,11 +1,12 @@
 import { useTexture } from "@react-three/drei";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import VenusImg from "../../assets/venus.jpg";
+import VenusImg from "../../../assets/venus.jpg";
+import * as THREE from "three";
 
 const Venus = () => {
   const VenusTexture = useTexture(VenusImg);
-  const VenusRef = useRef();
+  const VenusRef = useRef<THREE.Mesh>(null);
 
   useFrame(() => {
     if (VenusRef.current) {
@@ -15,7 +16,7 @@ const Venus = () => {
 
   return (
     <mesh ref={VenusRef}>
-      <sphereGeometry args={[0.4, 64, 64]} />
+      <sphereGeometry args={[0.8, 64, 64]} />
       <meshStandardMaterial
         map={VenusTexture}
         emissiveMap={VenusTexture}

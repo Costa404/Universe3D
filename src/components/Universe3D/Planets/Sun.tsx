@@ -1,5 +1,5 @@
 import { useTexture } from "@react-three/drei";
-import sunImg from "../../assets/sun.jpg";
+import sunImg from "../../../assets/sun.jpg";
 
 const Sun = () => {
   const SunTexture = useTexture(sunImg);

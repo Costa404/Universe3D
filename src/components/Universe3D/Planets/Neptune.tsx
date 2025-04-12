@@ -1,11 +1,12 @@
 import { useTexture } from "@react-three/drei";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import NeptuneImg from "../../assets/neptune.jpg";
+import NeptuneImg from "../../../assets/neptune.jpg";
+import * as THREE from "three";
 
 const Neptune = () => {
   const NeptuneTexture = useTexture(NeptuneImg);
-  const NeptuneRef = useRef();
+  const NeptuneRef = useRef<THREE.Mesh>(null);
 
   useFrame(() => {
     if (NeptuneRef.current) {

@@ -1,9 +1,22 @@
-import { useRef, useState } from "react";
+import { useRef, useState, forwardRef, useImperativeHandle } from "react";
 import { OrbitControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-const CameraController = ({ cameraTarget, onAnimationComplete }) => {
+type CameraTarget = {
+  position: [number, number, number];
+  lookAt: [number, number, number];
+};
+
+type CameraControllerProps = {
+  cameraTarget: CameraTarget;
+  onAnimationComplete?: () => void;
+};
+
+const CameraController = ({
+  cameraTarget,
+  onAnimationComplete,
+}: CameraControllerProps) => {
   useFrame(({ camera }) => {
     if (cameraTarget) {
       const targetPos = new THREE.Vector3(...cameraTarget.position);
@@ -17,18 +30,45 @@ const CameraController = ({ cameraTarget, onAnimationComplete }) => {
       }
     }
   });
+
   return null;
 };
 
-export const CameraSystem = () => {
-  const [cameraTarget, setCameraTarget] = useState(null);
+export type CameraSystemHandle = {
+  focusOnSpaceship: () => void;
+  focusOnSun: () => void;
+};
+
+export const CameraSystem = forwardRef<CameraSystemHandle>((props, ref) => {
+  const [cameraTarget, setCameraTarget] = useState<CameraTarget | null>(null);
   const [enableOrbitControls, setEnableOrbitControls] = useState(true);
-  const orbitControlsRef = useRef();
+  const orbitControlsRef = useRef<any>(null);
 
   const handleAnimationComplete = () => {
     setEnableOrbitControls(true);
     setCameraTarget(null);
   };
+
+  const focusOnSpaceship = () => {
+    setEnableOrbitControls(false);
+    setCameraTarget({
+      position: [0, 100, -300],
+      lookAt: [0, 0, 0],
+    });
+  };
+
+  const focusOnSun = () => {
+    setEnableOrbitControls(false);
+    setCameraTarget({
+      position: [0, 40, 40],
+      lookAt: [0, 0, 0],
+    });
+  };
+
+  useImperativeHandle(ref, () => ({
+    focusOnSpaceship,
+    focusOnSun,
+  }));
 
   return (
     <>
@@ -49,4 +89,4 @@ export const CameraSystem = () => {
       />
     </>
   );
-};
+});

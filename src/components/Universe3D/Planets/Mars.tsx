@@ -1,11 +1,12 @@
 import { useTexture } from "@react-three/drei";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import MarsImg from "../../assets/mars.jpg";
+import MarsImg from "../../../assets/mars.jpg";
+import * as THREE from "three";
 
 const Mars = () => {
   const MarsTexture = useTexture(MarsImg);
-  const MarsRef = useRef();
+  const MarsRef = useRef<THREE.Mesh>(null);
 
   useFrame(() => {
     if (MarsRef.current) {
@@ -15,7 +16,7 @@ const Mars = () => {
 
   return (
     <mesh ref={MarsRef}>
-      <sphereGeometry args={[0.16, 64, 64]} />
+      <sphereGeometry args={[0.8, 64, 64]} />
       <meshStandardMaterial
         map={MarsTexture}
         emissiveMap={MarsTexture}
