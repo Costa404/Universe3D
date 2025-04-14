@@ -5,7 +5,7 @@ import * as THREE from "three";
 
 const OrbitingPlanet = ({
   targetPosition,
-  radius = 8,
+  radius = 20,
   speed = 0.5,
   children,
   onClick,

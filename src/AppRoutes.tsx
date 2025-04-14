@@ -10,7 +10,10 @@ const LazyUniverse3D = React.lazy(
   () => import("./components/Universe3D/Universe3D.tsx")
 );
 const LazyLaunchSpaceship = React.lazy(
-  () => import("./components/LaunchSpaceship/LaunchSpaceship.tsx")
+  () =>
+    import(
+      "./components/Universe3D/Spaceship/LaunchSpaceship/LaunchSpaceship.tsx"
+    )
 );
 
 export const useAppRoutes = () => {

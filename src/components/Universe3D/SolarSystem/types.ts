@@ -14,7 +14,7 @@ export type SolarSystemProps = {
     speed: number;
     component: JSX.Element;
   }[];
-  showOrbits?: boolean; // <- novo!
+  showOrbits?: boolean;
 };
 
 export type OrbitingPlanetProps = {

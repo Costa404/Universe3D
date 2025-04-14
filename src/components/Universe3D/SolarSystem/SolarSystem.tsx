@@ -6,7 +6,7 @@ import { useOrbitStore } from "./useOrbitStore";
 
 export const SolarSystem = ({
   onPlanetClick,
-  sunPosition = [0, 0, 0],
+  sunPosition = [0, 0, 300],
   planets = [],
 }: SolarSystemProps) => {
   const { showOrbits } = useOrbitStore();

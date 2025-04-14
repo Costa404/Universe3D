@@ -7,9 +7,7 @@ const MilkyWayBackground = () => {
 
   return (
     <mesh scale={[-1, 1, 1]}>
-      {" "}
-      {/* Inverte a esfera para ser visível por dentro */}
-      <sphereGeometry args={[900, 64, 64]} /> {/* Esfera grande */}
+      <sphereGeometry args={[550, 64, 64]} />
       <meshBasicMaterial map={texture} side={2} />{" "}
     </mesh>
   );
